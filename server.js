@@ -8,7 +8,7 @@ const PORT = 4000;
 app.use(express.json());
 
 // Initialize the Google Generative AI client
-const genAI = new GoogleGenerativeAI("AIzaSyCITDU62RiLWy5Lkq6-2z8q9KQ5c30_QPk");
+const genAI = new GoogleGenerativeAI("API_KEY");
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 // Memory structure to store conversation history
