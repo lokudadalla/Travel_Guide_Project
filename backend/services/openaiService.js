@@ -58,7 +58,7 @@ module.exports = { callGPT };
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 // Initialize the Google Generative AI client with API key
-const genAI = new GoogleGenerativeAI("AIzaSyCITDU62RiLWy5Lkq6-2z8q9KQ5c30_QPk"); // Replace with your actual API key
+const genAI = new GoogleGenerativeAI("API_KEY"); // Replace with your actual API key
 const geminiModelName = "gemini-1.5-flash"; // Replace with your desired model name
 
 // This function will return the response from the Gemini AI model
