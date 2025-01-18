@@ -1,0 +1,17 @@
+/* Ensure Tailwind CSS is installed and configured correctly */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-black-opacity-50 {
+    background-color: rgba(25, 199, 199, 0.8);
+  }
+}
+
+@layer base {
+  button {
+    @apply bg-black-opacity-50 text-black font-bold py-3 px-6 rounded-lg;
+  }
+}
+
