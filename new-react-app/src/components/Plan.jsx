@@ -1,4 +1,5 @@
 import React from "react";
+import NavigationButton from "./NavigationButton";
 
 
 const PlanYourTrip = () => {
@@ -40,9 +41,7 @@ const PlanYourTrip = () => {
           doloremque recusandae repellendus.
         </p>
         <div className="flex space-x-4">
-          <button className="px-6 py-3 bg-gray-100 rounded-lg font-semibold hover:bg-gray-200">
-            Learn More
-          </button>
+          <NavigationButton />
           <button className="px-6 py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-800">
             Book Your Trip
           </button>

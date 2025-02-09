@@ -42,12 +42,7 @@ function SidebarNavbar() {
             >
             <h5>Destinations</h5>
             </Nav.Link>
-            <Nav.Link
-            href="#ChatBot"
-            className="px-4 text-white font-bold text-lg"
-            >
-            <h5>ChatBot</h5>
-            </Nav.Link>
+            
             <Nav.Link
             href="#Reservations"
             className="px-4 text-white font-bold text-lg"
