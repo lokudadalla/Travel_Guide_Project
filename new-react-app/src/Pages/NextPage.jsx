@@ -19,7 +19,6 @@ function NextPage() {
                 <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/3  z-10" style={{ right: "-30%", top: "30%" }}>
                     <h2 className="text-6xl font-bold text-black px-6 py-2" >Happy Travelers</h2>
                     <p className="text-3xl text-black mb-4" style={{paddingLeft: "60px"}}>Enjoy Srilanka</p>
-        
                 </div>
             </div>
 

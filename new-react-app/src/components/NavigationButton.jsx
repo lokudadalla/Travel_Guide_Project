@@ -1,18 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function NavigationButton() {
+function NavigationButton({text,background,linkpage}) {
     return (
-        <Link to="/next-page" style={{ textDecoration: "none" }}>
+        <Link to={linkpage} style={{ textDecoration: "none" }}>
             <button style={{
                 padding: "20px 20px",
-                background: "green",
+                background: background,
                 color: "white",
                 border: "none",
                 borderRadius: "10px",
                 cursor: "pointer",
             }}>
-                Reviews
+                {text}
             </button>
         </Link>
     );

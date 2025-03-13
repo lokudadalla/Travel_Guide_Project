@@ -12,6 +12,7 @@ import './css/App.css';
 import Button_new from "./components/Button_New.jsx";
 import NextPage from "./Pages/NextPage.jsx"; // Import the new page
 import Explore from "./Pages/Explore1.jsx"; // Import the new page
+import BookingSearch from "./Pages/BookingSearch.jsx";
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
                     <Route path="/next-page" element={<NextPage />} />
                     {/* Explore Page */}
                     <Route path="/explore" element={<Explore />} />
+                    <Route path="/book-hotels" element={<BookingSearch />} />
                 </Routes>
             </div>
         </Router>

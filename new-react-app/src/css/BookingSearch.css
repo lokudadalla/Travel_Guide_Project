@@ -1,0 +1,290 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 60vh; /* Adjust height */
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Makes sure the image covers the whole div */
+}
+
+/* Overlay Text and Buttons */
+.hero-overlay {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  background: transparent; /* Adds a dark overlay */
+  
+}
+
+.hero-title {
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 2px; /* Reduce space between title and subtitle */
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  margin-bottom: 15px; /* Adjust this value to control space before buttons */
+}
+
+.hero-buttons {
+  margin-top: 40px;
+}
+
+.nav-btn {
+  background-color: white;
+  color: #003580;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+/* Booking Container */
+.booking-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: auto;
+  padding: 50px;
+}
+
+/* Left Content */
+.left-content {
+  flex: 1;
+  
+  
+}
+
+.left-content h2 {
+  font-size: 52px;
+  color: #003580;
+  padding-left: 150px;
+}
+
+.left-content p {
+  font-size: 18px;
+  color: #555;
+  padding-left: 150px;
+}
+
+/* Right Content - Search Box */
+.right-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0px;
+}
+
+.search-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 60px; /* Increased padding inside the box */
+  padding-bottom: 60px;
+  padding-left:40px;
+  padding-right: 40px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 24px 20px rgba(0, 0, 0, 0.1);
+  width: 500px; /* Slightly wider */
+  margin: 40px auto; /* More space around the box */
+}
+
+/* Input Fields */
+.search-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #eef3f7;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.search-item input,
+.search-item select {
+  border: none;
+  background: transparent;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+}
+
+/* Search Button */
+.search-btn {
+  padding: 12px;
+  background-color: #0071c2;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-btn:hover {
+  background-color: #005fa3;
+}
+
+
+/* .recommended-hotels {
+  margin-top: 30px;
+}
+
+.hotel-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.hotel-card {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.hotel-card:hover {
+  transform: translateY(-5px);
+}
+
+.hotel-card h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.hotel-card p {
+  margin: 5px 0;
+  color: #555;
+} */
+
+
+
+.recommended-hotels {
+  margin-top: 30px;
+}
+
+.recommended-hotels h2 {
+  font-size: 50px;
+  //color: rgb(1, 11, 1);
+  color: #003580;
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.hotel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center; /* Center items horizontally */
+ 
+
+  //padding: 0 150px;
+}
+
+/* Hotel Card */
+.hotel-card {
+  width: 1000px;
+  background-color: #ffffff;
+  padding-left: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #e0e0e0;
+  //align-items: center;
+  //justify-content: center;
+}
+
+.hotel-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Hotel Name */
+.hotel-name {
+  font-size: 30px;
+  font-weight: bold;
+  color:rgb(11, 28, 52);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Flexbox Layout for Image + Description */
+.hotel-content {
+  padding-left: 40px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+/* Image Container */
+.hotel-image-container {
+  flex: 1;
+  max-width: 200px;
+}
+
+.hotel-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.hotel-image:hover {
+  transform: scale(1.05);
+}
+
+/* Hotel Description */
+.hotel-description {
+  flex: 2;
+  font-size: 16px;
+  color: rgb(21,8,6);
+  padding-left: 80px;
+}
+
+.hotel-description p {
+  margin-bottom: 8px;
+}
+
+.price-container{
+  display: flex;
+  //justify-content: flex-start;
+  //padding-left: 80px;
+  padding-right: 150px;
+}
+
+/* Price Styling */
+.price {
+  font-weight: bold;
+  color: #28a745;
+}
+
+/* Contact Styling */
+.contact {
+  color:rgb(21, 8, 6);
+  font-size: 14px;
+}
+

@@ -41,10 +41,8 @@ const PlanYourTrip = () => {
           doloremque recusandae repellendus.
         </p>
         <div className="flex space-x-4">
-          <NavigationButton />
-          <button className="px-6 py-3 bg-black text-white rounded-lg font-semibold hover:bg-gray-800">
-            Book Your Trip
-          </button>
+          <NavigationButton  text="Reviews" background="green" linkpage="/next-page"/>
+          <NavigationButton  text="Book your Place" background="black" linkpage="/book-hotels"/>
         </div>
       </div>
     </div>
