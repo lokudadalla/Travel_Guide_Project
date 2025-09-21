@@ -1,0 +1,132 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: travel-mysql
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}    # REQUIRED
+      MYSQL_DATABASE: ${MYSQL_DB}
+    ports:
+      - "3307:3306"                 # optional; for Workbench on host
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./backend/initdb:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  chroma:
+    image: chromadb/chroma:latest
+    container_name: travel-chroma
+    restart: unless-stopped
+    environment:
+      CHROMA_SERVER_HOST: 0.0.0.0
+      CHROMA_SERVER_HTTP_PORT: 8000
+      CHROMA_SERVER_CORS_ALLOW_ORIGINS: "http://localhost:3000,http://127.0.0.1:3000"
+      ANONYMIZED_TELEMETRY: "False"
+    ports:
+      - "8000:8000"   # optional; debug from host
+    volumes:
+      - chroma_data:/chroma
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8000/api/v1/heartbeat"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  backend:
+    build: ./backend
+    container_name: travel-backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./.env
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./new-react-app
+    container_name: travel-frontend
+    restart: unless-stopped
+    # If your frontend Dockerfile uses nginx (serves on 80), keep 3001:80.
+    # If it runs a dev server on 3000, change to "3001:3000".
+    ports:
+      - "3001:80"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data: {}
+  chroma_data: {}
+
+
+
+
+
+
+
+
+
+
+
+
+# services:
+#   db:
+#     image: mysql:8.0
+#     container_name: travel-mysql
+#     restart: unless-stopped
+#     environment:
+#       MYSQL_ROOT_PASSWORD: ${MYSQL_PW}    #Sdl101sql@     # REQUIRED
+#       MYSQL_DATABASE: ${MYSQL_DB}             #newdb
+#     ports:
+#       - "3307:3306"                 # optional; for Workbench on host
+#     volumes:
+#       - mysql_data:/var/lib/mysql
+#       - ./initdb:/docker-entrypoint-initdb.d
+#     healthcheck:
+#       test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-p${MYSQL_PW}"]
+#       interval: 5s
+#       timeout: 5s
+#       retries: 20
+    
+#   chroma:
+#     image: chromadb/chroma:latest
+#     container_name: travel-chroma
+#     restart: unless-stopped
+#     environment:
+#       CHROMA_SERVER_HOST: 0.0.0.0
+#       CHROMA_SERVER_HTTP_PORT: 8000
+#       CHROMA_SERVER_CORS_ALLOW_ORIGINS: "http://localhost:3000,http://127.0.0.1:3000"
+#       ANONYMIZED_TELEMETRY: "False"
+#     ports:
+#       - "8000:8000"   # optional; lets you hit it from the host for debugging
+#     volumes:
+#       - chroma_data:/chroma
+#     healthcheck:
+#       test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8000/api/v1/heartbeat"]
+#       interval: 5s
+#       timeout: 5s
+#       retries: 20
+
+
+#   backend:
+#     build: .
+#     container_name: travel-backend
+#     restart: unless-stopped
+#     ports:
+#       - "3000:3000"
+#     env_file:
+#       - ./.env
+#     depends_on:
+#       db:
+#         condition: service_healthy      # wait until DB is ready
+
+# volumes:
+#   mysql_data: {}
+#   chroma_data: {}
