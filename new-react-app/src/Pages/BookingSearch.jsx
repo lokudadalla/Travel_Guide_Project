@@ -43,7 +43,7 @@ const BookingSearch = () => {
 
     try {
       console.log("hello");
-      const response = await fetch("http://localhost:3000/hotel_data_1", {
+      const response = await fetch("/hotel_data_1", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

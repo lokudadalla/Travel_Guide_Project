@@ -133,27 +133,154 @@
 
 
 
+// import React, { useState, useEffect, useRef } from "react";
+// import ChatBody from "../components/ChatBody";
+// import ChatInput from "../components/ChatInput";
+// import "./Chat.css"; // Add the chatbot-specific styles here
+
+// const Chat = () => {
+//   const [chatMessages, setChatMessages] = useState([]);
+//   const [userInput, setUserInput] = useState("");
+//   const [isChatbotTyping, setIsChatbotTyping] = useState(false);
+//   const [typingIntervalId, setTypingIntervalId] = useState(null);
+//   const [typingIndicatorMessage, setTypingIndicatorMessage] =
+//     useState("Typing");
+//   const [isOpen, setIsOpen] = useState(true); // State to manage chat window visibility
+//   const EXPRESS_PORT = 3000; // Port that the Express server is running on
+
+//   const firstRender = useRef(true);
+
+//   const displayUserMessage = (message) => {
+//     setChatMessages((prevChatMessages) => [
+//       ...prevChatMessages,
+//       { message, type: "user" },
+//     ]);
+//     setUserInput("");
+//   };
+
+//   const displayChatbotMessage = (message) => {
+//     if (isChatbotTyping) {
+//       clearInterval(typingIntervalId);
+//       setIsChatbotTyping(false);
+//     }
+//     setChatMessages((prevChatMessages) => [
+//       ...prevChatMessages,
+//       { message, type: "chatbot" },
+//     ]);
+//   };
+
+//   const displayTypingIndicator = () => {
+//     if (!isChatbotTyping) {
+//       setIsChatbotTyping(true);
+//       clearInterval(typingIntervalId);
+//       const intervalId = setInterval(() => {
+//         setTypingIndicatorMessage((prevMessage) => {
+//           if (prevMessage === "Typing...") return "Typing";
+//           if (prevMessage === "Typing") return "Typing.";
+//           if (prevMessage === "Typing.") return "Typing..";
+//           if (prevMessage === "Typing..") return "Typing...";
+//         });
+//       }, 400);
+//       setTypingIntervalId(intervalId);
+//     }
+//   };
+
+//   const sendMessage = async () => {
+//     if (userInput.trim() === "") return;
+//     displayUserMessage(userInput);
+//     displayTypingIndicator();
+
+//     try {
+//       const response = await fetch(`http://127.0.0.1:${EXPRESS_PORT}/message`, {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify({ message: userInput }),
+//       });
+
+//       if (!response.ok) throw new Error("Network response was not ok");
+
+//       const data = await response.json();
+//       displayChatbotMessage(data.message);
+//       setIsChatbotTyping(false);
+//     } catch (error) {
+//       console.error("Error:", error);
+//       displayChatbotMessage(`Sorry an error has occurred... (${error})`);
+//       setIsChatbotTyping(false);
+//     }
+//   };
+
+//   const handleInputChange = (e) => {
+//     setUserInput(e.target.value);
+//   };
+
+//   const handleKeyDown = (e) => {
+//     if (e.key === "Enter") {
+//       e.preventDefault();
+//       sendMessage();
+//     }
+//   };
+
+//   useEffect(() => {
+//     if (firstRender.current) {
+//       firstRender.current = false;
+//       displayChatbotMessage(
+//         `Hi, I'm TraveBot. How can I help you today?`
+//       );
+//     }
+//   }, []);
+
+//   return (
+//     <>
+//     {isOpen && (<div className="chatbot-page">
+//       <div id="ChatBot" className="chat-container">
+//           <div className="chat-title">
+//             <span>Chat With TraveBot</span>
+//             <button className="chat-backbutton" onClick={() => setIsOpen(false)}>×</button>
+//           </div>
+//           <ChatBody
+//             chatMessages={chatMessages}
+//             isChatbotTyping={isChatbotTyping}
+//             typingIndicatorMessage={typingIndicatorMessage}
+//           />
+//           <ChatInput
+//             value={userInput}
+//             onChange={handleInputChange}
+//             onKeyDown={handleKeyDown}
+//             placeholder="Type your message here..."
+//             onClick={sendMessage}
+//           />
+//         </div>
+//     </div>
+//     )}
+//     </>
+//   );
+// };
+
+// export default Chat;
+
+
+
+
 import React, { useState, useEffect, useRef } from "react";
 import ChatBody from "../components/ChatBody";
 import ChatInput from "../components/ChatInput";
-import "./Chat.css"; // Add the chatbot-specific styles here
+import "./Chat.css";
 
-const Chat = () => {
+const Chat = ({ onClose }) => {
   const [chatMessages, setChatMessages] = useState([]);
   const [userInput, setUserInput] = useState("");
   const [isChatbotTyping, setIsChatbotTyping] = useState(false);
   const [typingIntervalId, setTypingIntervalId] = useState(null);
   const [typingIndicatorMessage, setTypingIndicatorMessage] =
     useState("Typing");
-  const EXPRESS_PORT = 3000; // Port that the Express server is running on
+  const EXPRESS_PORT = 3000;
 
   const firstRender = useRef(true);
 
   const displayUserMessage = (message) => {
-    setChatMessages((prevChatMessages) => [
-      ...prevChatMessages,
-      { message, type: "user" },
-    ]);
+    setChatMessages((prev) => [...prev, { message, type: "user" }]);
     setUserInput("");
   };
 
@@ -162,25 +289,22 @@ const Chat = () => {
       clearInterval(typingIntervalId);
       setIsChatbotTyping(false);
     }
-    setChatMessages((prevChatMessages) => [
-      ...prevChatMessages,
-      { message, type: "chatbot" },
-    ]);
+    setChatMessages((prev) => [...prev, { message, type: "chatbot" }]);
   };
 
   const displayTypingIndicator = () => {
     if (!isChatbotTyping) {
       setIsChatbotTyping(true);
       clearInterval(typingIntervalId);
-      const intervalId = setInterval(() => {
-        setTypingIndicatorMessage((prevMessage) => {
-          if (prevMessage === "Typing...") return "Typing";
-          if (prevMessage === "Typing") return "Typing.";
-          if (prevMessage === "Typing.") return "Typing..";
-          if (prevMessage === "Typing..") return "Typing...";
+      const id = setInterval(() => {
+        setTypingIndicatorMessage((prev) => {
+          if (prev === "Typing...") return "Typing";
+          if (prev === "Typing") return "Typing.";
+          if (prev === "Typing.") return "Typing..";
+          return "Typing...";
         });
       }, 400);
-      setTypingIntervalId(intervalId);
+      setTypingIntervalId(id);
     }
   };
 
@@ -188,30 +312,20 @@ const Chat = () => {
     if (userInput.trim() === "") return;
     displayUserMessage(userInput);
     displayTypingIndicator();
-
     try {
-      const response = await fetch(`http://127.0.0.1:${EXPRESS_PORT}/message`, {
+      const res = await fetch(`http://127.0.0.1:${EXPRESS_PORT}/message`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userInput }),
       });
-
-      if (!response.ok) throw new Error("Network response was not ok");
-
-      const data = await response.json();
+      if (!res.ok) throw new Error("Network response was not ok");
+      const data = await res.json();
       displayChatbotMessage(data.message);
       setIsChatbotTyping(false);
-    } catch (error) {
-      console.error("Error:", error);
-      displayChatbotMessage(`Sorry an error has occurred... (${error})`);
+    } catch (err) {
+      displayChatbotMessage(`Sorry an error has occurred... (${err})`);
       setIsChatbotTyping(false);
     }
-  };
-
-  const handleInputChange = (e) => {
-    setUserInput(e.target.value);
   };
 
   const handleKeyDown = (e) => {
@@ -224,32 +338,34 @@ const Chat = () => {
   useEffect(() => {
     if (firstRender.current) {
       firstRender.current = false;
-      displayChatbotMessage(
-        `Hi, I'm a Chat Bot. What can I help you with today?`
-      );
+      displayChatbotMessage(`Hi, I'm TraveBot. How can I help you today?`);
     }
   }, []);
 
   return (
-    <div className="chatbot-page">
-      <div id="ChatBot" className="chat-container">
-        <div className="chat-title">Chat With Travolog</div>
-        <ChatBody
-          chatMessages={chatMessages}
-          isChatbotTyping={isChatbotTyping}
-          typingIndicatorMessage={typingIndicatorMessage}
-        />
-        <ChatInput
-          value={userInput}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          placeholder="Type your message here..."
-          onClick={sendMessage}
-        />
+    <div id="ChatBot" className="chat-container">
+      <div className="chat-title">
+        <span>Chat With TraveBot</span>
+        <button className="chat-close-btn" onClick={onClose} aria-label="Close chat">
+          ×
+        </button>
       </div>
+
+      <ChatBody
+        chatMessages={chatMessages}
+        isChatbotTyping={isChatbotTyping}
+        typingIndicatorMessage={typingIndicatorMessage}
+      />
+
+      <ChatInput
+        value={userInput}
+        onChange={(e) => setUserInput(e.target.value)}
+        onKeyDown={handleKeyDown}
+        placeholder="Type your message here..."
+        onClick={sendMessage}
+      />
     </div>
   );
 };
 
 export default Chat;
-

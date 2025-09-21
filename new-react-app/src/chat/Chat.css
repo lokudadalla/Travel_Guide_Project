@@ -1,38 +1,43 @@
-.chatbot-page {
-  background-color: #0d1117;
-  color:rgb(0, 0, 0);
-  min-height: 100vh; /* Ensures the chatbot page takes the full viewport height */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-    font-family: Arial, sans-serif;
-}
+/* Remove .chatbot-page entirely */
 
 .chat-container {
-  max-width: 400px;
-  margin: auto;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 95%;
   background-color: var(--secondary-colour);
+  display: flex;
+  flex-direction: column;
 }
 
 .chat-title {
   background-color: var(--main-colour);
   color: #fff;
-  padding: 15px;
-  font-size: 20px;
+  padding: 10px 16px;
+  font-size: 18px;
   font-weight: bold;
-  text-align: center;
   border-bottom: 1px solid var(--secondary-colour);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chat-backbutton {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
 }
 
 .chat-body {
-  height: 300px;
+  height: 100%;
   overflow-y: auto;
   padding: 10px;
   background-color: var(--secondary-colour);
 }
+
+/* keep your existing message/input styles ... */
+
 
 .chat-message {
   margin: 5px 0;

@@ -38,7 +38,7 @@ const ReviewForm = () => {
     // ✅ Fetch reviews from backend only on mount
     const fetchReviews = async () => {
       try {
-        const response = await fetch("http://localhost:3000/reviews/all");
+        const response = await fetch("/reviews/all");
         const data = await response.json();
         setReviews(data);
       } catch (error) {
@@ -78,7 +78,7 @@ const ReviewForm = () => {
     };
   
     try {
-      const response = await fetch("http://localhost:3000/reviews", {
+      const response = await fetch("/reviews", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
