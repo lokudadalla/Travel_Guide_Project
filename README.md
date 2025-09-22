@@ -34,24 +34,25 @@ AI/NLP: Gemini AI
 
 Containerization: Docker + Docker Compose
 
-## 🐳 Running with Docker
+## Running with Docker
 
 1. **Clone the repository**
    ```bash
    git clone https://github.com/lokudadalla/Travel_Guide_Project.git
    cd Travel_Guide_Project
 
-   
+2. **Start services with Docker Compose**
+    ```bash
+    docker-compose up --build
+
+3. **Access the app at**
+    ```bash
+    http://localhost:3001
+
+
+
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-This project was inspired by the capabilities of Gemini's API.
-
-This project was originally crafted without the use of React. If you're curious to explore its earlier version, you can find the legacy repository by clicking
-
-## Contact
-For any inquiries or questions, you can reach me at lokudadalla2001sandaru@gmail.com
 
 
 
