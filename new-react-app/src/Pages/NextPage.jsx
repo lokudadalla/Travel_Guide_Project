@@ -22,10 +22,6 @@ function NextPage() {
                 </div>
             </div>
 
-            {/* <div style={{padding: "70px", display: "flex", flexDirection: "column", justifyContent:"space-around"}}>
-                <input style={{padding: "10px", display: "flex"}} type="text" placeholder="Enter your name" />
-                <input style={{padding: "40px", display: "flex"}} type="text" placeholder="Enter review"/>
-            </div> */}
             <ReviewInput/>
 
             

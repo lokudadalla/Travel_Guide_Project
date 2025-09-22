@@ -1,9 +1,6 @@
-import React from "react";
-import Carousel from "react-bootstrap/Carousel";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import img2 from "../assets/images/img2.jpg";
 
 
 const Footer1 = () => {

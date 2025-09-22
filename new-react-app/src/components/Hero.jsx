@@ -1,5 +1,3 @@
-import React from 'react';
-import Navbar2 from './Navbar2.jsx';
 import img1 from "../assets/images/img1.jpg";
 import NavigationButton2 from './NavButton2.jsx';
 

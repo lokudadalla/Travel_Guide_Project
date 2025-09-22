@@ -1,5 +1,3 @@
-import React from "react";
-
 const TravelLankaApp = () => {
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
