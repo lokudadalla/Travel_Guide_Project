@@ -2,12 +2,12 @@ const { ChromaClient } = require("chromadb");
 const client = new ChromaClient({path: process.env.CHROMA_URL});
 require('dotenv').config();
 const { HfInference } = require("@huggingface/inference");
-const hf = new HfInference(process.env.HF_API_KEY); // Use your actual Hugging Face API key here
+const hf = new HfInference(process.env.HF_API_KEY); 
 
 const { OpenAIEmbeddingFunction } = require("@chroma-core/openai");
 
 const embeddingFunction = new OpenAIEmbeddingFunction({
-  apiKey: process.env.OpenAI_API_KEY, // Use your actual OpenAI API key here
+  apiKey: process.env.OpenAI_API_KEY, 
   modelName: "text-embedding-3-small",
 });
 
@@ -38,7 +38,6 @@ async function hello() {
         );
         console.log("✅ Hotel Texts:", hotelTexts);
 
-        // ✅ IMPORTANT: Pass the embedding function directly to the collection creation
         const collection = await client.getOrCreateCollection({
             name: collectionName,
             embeddingFunction: embeddingFunction
@@ -46,11 +45,10 @@ async function hello() {
         console.log("✅ Collection created:", collection);
 
         // Add hotels as items to the collection
-        // ✅ The collection will now automatically generate embeddings from the documents
+        // The collection will now automatically generate embeddings from the documents
         await collection.add({
             ids: hotelItems.map((hotel) => hotel.id.toString()),
             documents: hotelTexts,
-            // ❌ REMOVED: No need to pass 'embeddings' anymore
         });
 
         const new_data = getNewData();
@@ -85,26 +83,15 @@ async function hello() {
 }
 
 
-// async function classifyText(text, labels) {
-//     const response = await hf.request({
-//         model: "facebook/bart-large-mnli",
-//         inputs: text,
-//         parameters: { candidate_labels: labels },
-//     });
-//     return response;
-// }
-
-
 // Zero-shot over words to tag as "location" or "hotel name"
 async function classifyText(text, labels) {
-  if (!hf) return null; // no key → skip classification
+  if (!hf) return null; 
   try {
     const out = await hf.zeroShotClassification({
       model: "facebook/bart-large-mnli",
       inputs: text,
       parameters: { candidate_labels: labels }
     });
-    // HF may return an object or an array; normalize
     return Array.isArray(out) ? out[0] : out;
   } catch (err) {
     console.error("❌ HF zero-shot error:", err.message || err);
@@ -112,34 +99,7 @@ async function classifyText(text, labels) {
   }
 }
 
-// async function extractFilterCriteria(query) {
-//     const criteria = { location: null, hotelName: null };
-//     const labels = ["location", "hotel name"];
-    
-//     const words = query.split(" ");
-//     for (const word of words) {
-//         const result = await classifyText(word, labels);
-//         const highestScoreLabel = result.labels[0];
-//         const score = result.scores[0];
 
-//         if (score > 0.5) {
-//             switch (highestScoreLabel) {
-//                 case "location":
-//                     criteria.location = word;
-//                     break;
-//                 case "hotel name":
-//                     criteria.hotelName = word;
-//                     break;
-//                 // case "surrounding places":
-//                 //     criteria.surroundingPlaces = word;
-//                 //     break;
-//                 default:
-//                     break;
-//             }
-//         }
-//     }
-//     return criteria;
-// }
 
 
 async function extractFilterCriteria(query) {
@@ -167,14 +127,13 @@ async function extractFilterCriteria(query) {
 
 async function performSimilaritySearch(collection, queryTerm, filterCriteria, hotelItems) {
     try {
-        // ✅ The query method can directly take a text string or array
-        // It will use the collection's embeddingFunction to convert the text to an embedding
+        
         console.log("Filter Criteria:", filterCriteria);
 
         const results = await collection.query({
             collection: collectionName,
-            queryTexts: [queryTerm], // ✅ Use queryTexts instead of queryEmbeddings
-            nResults: 3, // Changed 'n' to 'nResults' for clarity and accuracy
+            queryTexts: [queryTerm], 
+            nResults: 3, 
         });
 
         if (!results || results.length === 0) {

@@ -2,8 +2,8 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 require('dotenv').config();
 
 // Initialize the Google Generative AI client with API key
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY); // Replace with your actual API key
-const geminiModelName = process.env.GEMINI_API_MODEL; // Replace with your desired model name
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY); 
+const geminiModelName = process.env.GEMINI_API_MODEL; 
 
 // This function will return the response from the Gemini AI model
 async function callGemini(promptContent, systemContent, previousChat) {

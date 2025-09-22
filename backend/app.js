@@ -9,11 +9,8 @@ const { exec } = require("child_process");
 const routes1 = require("./routes/indx.js");
 const routes2 = require("./routes/index.js");
 const router3 = require("./routes/hotel_route.js");
-const { fetchAllHotels} = require("./services/hotel_service.js");
 
-const { db } = require("./Config/config.js"); // Database Connection
 const { setupSocket } = require("./controllers/msgcontroller.js");
-const {hello} = require("./services/hotel_recommendation.js");
 
 const app = express();
 const BACKEND_PORT = 3000;
