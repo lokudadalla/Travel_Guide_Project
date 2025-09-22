@@ -11,7 +11,7 @@ The app is built with a modern stack (React.js, Node.js, Express.js, SQL) and al
 
 TravelBot (Chatbot) – NLP-powered assistant using Gemini API.
 
-Recommendation Engine – SQL-based system that suggests hotels near cities.
+Recommendation Engine – SQL & Chroma based system that suggests hotels near cities.
 
 Modern Tech Stack – React frontend + Node.js/Express backend.
 
@@ -30,7 +30,7 @@ Backend: Node.js + Express.js
 
 Database: SQL
 
-AI/NLP: Gemini AI
+AI/NLP: Gemini AI & ChromaDB
 
 Containerization: Docker + Docker Compose
 
