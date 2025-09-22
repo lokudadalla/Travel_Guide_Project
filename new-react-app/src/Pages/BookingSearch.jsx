@@ -12,17 +12,8 @@ const BookingSearch = () => {
   const [children, setChildren] = useState(0);
   const [rooms, setRooms] = useState(1);
 
-   // ✅ New State to Store Recommended Hotels
+   // New State to Store Recommended Hotels
    const [recommendedHotels, setRecommendedHotels] = useState([]);
-
-  // let hotel_data = {
-  //   destination: destination,
-  //   checkInDate: checkInDate,
-  //   checkOutDate: checkOutDate,
-  //   adults: adults,
-  //   children: children,
-  //   rooms: rooms,
-  // };
 
 
   const handleSearch = async (e) => {
@@ -55,9 +46,9 @@ const BookingSearch = () => {
       console.log(result);
   
       if (response.ok) {
-        setRecommendedHotels(result.recommended_hotels); // ✅ Store recommendations
+        setRecommendedHotels(result.recommended_hotels); // Store recommendations
 
-        // ✅ Clear form fields
+        // Clear form fields
         setDestination("");
         setCheckInDate("");
         setCheckOutDate("");
@@ -161,54 +152,6 @@ const BookingSearch = () => {
         </div>
       </div>
 
-      {/* ✅ Display Recommended Hotels */}
-      {/* {recommendedHotels.length > 0 && (
-    <div className="recommended-hotels">
-        <h2>Recommended Hotels</h2>
-        <div className="hotel-list">
-            {recommendedHotels.map((hotel) => (
-                <div key={hotel.id} className="hotel-card">
-                    <h3>{hotel.hotel_name}</h3>
-                    <p><strong>Location:</strong> {hotel.location}</p>
-                    <p><strong>Surroundings:</strong> {hotel.surrounding_places}</p>
-                    <p><strong>Distance from Town:</strong> {hotel.distance_from_town} km</p>
-                    <p><strong>Price (Single Room):</strong> ${hotel.price_single_room}</p>
-                    <p><strong>Price (Double Room):</strong> ${hotel.price_double_room}</p>
-                    <p><strong>Contact:</strong> {hotel.contact}</p>
-                </div>
-            ))}
-        </div>
-    </div>
-)} */}
-
-{/* {recommendedHotels.length > 0 && (
-    <div className="recommended-hotels">
-        <h2>Recommended Hotels</h2>
-        <div className="hotel-list">
-            {recommendedHotels.map((hotel) => (
-                <div key={hotel.id} className="hotel-card">
-                  <div>
-                    <h3>{hotel.hotel_name}</h3>
-                    <p><strong>Location:</strong> {hotel.location}</p>
-                    <p><strong>Surroundings:</strong> {hotel.surrounding_places}</p>
-                    <p><strong>Distance from Town:</strong> <span className="highlight">{hotel.distance_from_town} km</span></p>
-                    <p className="price"><strong>Price (Single Room):</strong> ${hotel.price_single_room}</p>
-                    <p className="price"><strong>Price (Double Room):</strong> ${hotel.price_double_room}</p>
-                    <p className="contact"><strong>Contact:</strong> {hotel.contact}</p>
-                    <p>{hotel.image_url}</p>
-                  </div>
-                  <div >
-                      <img
-                        src={`/image/${hotel.image_url}.jpg`}
-                        alt={hotel.hotel_name}
-                        className="hotel-image"
-                      />
-                  </div>
-                </div>
-            ))}
-        </div>
-    </div>
-)} */}
 
 {recommendedHotels.length > 0 && (
     <div className="recommended-hotels">
