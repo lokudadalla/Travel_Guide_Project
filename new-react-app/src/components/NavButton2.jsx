@@ -5,11 +5,11 @@ function NavigationButton2() {
     return (
         <Link to="/explore" style={{ textDecoration: "none" }}>
             <button style={{
-                padding: "20px 20px",
-                background: "blue",
+                padding: "11px 20px",
+                background: "#7d7902ff",
                 color: "white",
                 border: "none",
-                borderRadius: "10px",
+                borderRadius: "30px",
                 cursor: "pointer",
             }}>
                 Explore

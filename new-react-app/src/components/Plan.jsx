@@ -33,12 +33,10 @@ const PlanYourTrip = () => {
       <div className="flex flex-col justify-center">
         <h1 className="text-4xl font-bold mb-4">Plan Your Next Trip</h1>
         <p className="text-gray-700 mb-4">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga,
-          laudantium.
+          Discover amazing destinations and create unforgettable memories on your next adventure.
         </p>
         <p className="text-gray-700 mb-6">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad fugit vero
-          doloremque recusandae repellendus.
+          Explore hidden gems, relax on beautiful beaches, or dive into vibrant city life—your perfect getaway starts here.
         </p>
         <div className="flex space-x-4">
           <NavigationButton  text="Reviews" background="green" linkpage="/next-page"/>
